@@ -14,6 +14,9 @@ class Home extends React.Component {
                 <Button title="Go to Profile screen"
                     onPress={() => this.props.navigation.navigate('Profile')}
                 />
+                <Button title="Go to Camera screen"
+                    onPress={() => this.props.navigation.navigate('Camera')}
+                />
             </View>
         );
     }
