@@ -20,6 +20,7 @@ class Camera extends React.Component {
                 <RNCamera
                     style={styles.preview}
                     type={RNCamera.Constants.Type.back}
+                    captureAudio={false}
                     flashMode={this.state.torchOn ? RNCamera.Constants.FlashMode.on :
                         RNCamera.Constants.FlashMode.off}
                     androidCameraPermissionOptions={{
@@ -38,8 +39,8 @@ class Camera extends React.Component {
                 >
                     <Text style={{ backgroundColor: 'white' }}>BARCODE SCANNER</Text>
                     <Button
-                        title="Go to Profile"
-                        onPress={() => this.props.navigation.navigate('Profile')}
+                        title="Go to Home"
+                        onPress={() => this.props.navigation.navigate('Home')}
                     />
                 </RNCamera>
                 <View style={styles.bottomOverlay}>
@@ -47,8 +48,8 @@ class Camera extends React.Component {
                         this.handleTourch(this.state.torchOn)}>
                         <Image style={styles.cameraIcon}
                             source={this.state.torchOn === true ?
-                                require('./images/flasher_on.png') :
-                                require('./images/flasher_off.png')} />
+                                require('../../images/flasher_on.png') :
+                                require('../../images/flasher_off.png')} />
 
                     </TouchableOpacity>
                 </View>
