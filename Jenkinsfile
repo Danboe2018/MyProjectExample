@@ -20,21 +20,28 @@ pipeline {
                 sh 'yarn install'
             }
         }
-        stage('Build Android') {
+        stage("Run Android") {
             steps {
                 wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
-                    echo 'Building Android..'
+                    echo 'Running Android..'
                     sh 'npm install'
                     sh 'react-native run-android --verbose'
-                    sh 'rm -rf node_modules && npm install'
+                }
+            }
+        }
+        stage('Build Android') {
+            steps {
+                 wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
+                    echo 'Building Android..'
+                    sh 'cd android ; ./gradlew lintFix'
                     sh 'cd android ; ./gradlew build'
                 }
             }
         }
-        stage('Build iOS') {
+        stage('Run iOS') {
             steps {
                 wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
-                    echo 'Building iOS..'
+                    echo 'Running iOS..'
                     sh 'npm install'
                     sh 'cd ios ; pod install'
                     sh 'react-native run-ios --verbose'
