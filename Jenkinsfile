@@ -10,14 +10,8 @@ pipeline {
             steps {
                 echo 'Cleaning...'
                 sh 'git reset --hard HEAD'
-                sh 'cd android ; ./gradlew clean'
-                sh 'rm -rf node_modules'
-                sh 'yarn cache clean'
-            }
-        }
-        stage("Project Install") {
-            steps {
                 sh 'yarn install'
+                sh 'cd android ; ./gradlew clean'
             }
         }
         stage("Run Android") {
@@ -33,7 +27,6 @@ pipeline {
                  wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
                     echo 'Building Android..'
                     sh 'cd android ; ./gradlew clean'
-                    sh 'cd android ; ./gradlew lintFix'
                     sh 'cd android ; ./gradlew build'
                 }
             }
