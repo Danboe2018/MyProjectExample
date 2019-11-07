@@ -24,7 +24,6 @@ pipeline {
             steps {
                 wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
                     echo 'Running Android..'
-                    sh 'npm install'
                     sh 'react-native run-android --verbose'
                 }
             }
@@ -43,7 +42,6 @@ pipeline {
             steps {
                 wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
                     echo 'Running iOS..'
-                    sh 'npm install'
                     sh 'cd ios ; pod install'
                     sh 'react-native run-ios --verbose'
                 }
