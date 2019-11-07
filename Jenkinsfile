@@ -33,6 +33,7 @@ pipeline {
             steps {
                  wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
                     echo 'Building Android..'
+                    sh 'cd android ; ./gradlew clean'
                     sh 'cd android ; ./gradlew lintFix'
                     sh 'cd android ; ./gradlew build'
                 }
